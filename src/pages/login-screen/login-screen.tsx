@@ -2,10 +2,11 @@ import {Helmet} from 'react-helmet-async';
 
 import {NavLink} from 'react-router-dom';
 
-import {CITIES} from '../../const.ts';
+import {CITIES, PASSWORD_VALID_ERROR} from '../../const.ts';
 import {FormEvent, useRef} from 'react';
 import {useActionCreators} from '../../hooks';
 import {userActions} from '../../store/slices/user.ts';
+import {toast} from 'react-toastify';
 
 function LoginScreen (): JSX.Element {
 
@@ -14,14 +15,21 @@ function LoginScreen (): JSX.Element {
 
   const {loginAction} = useActionCreators(userActions);
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
-      loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
-      });
+
+      const password = passwordRef.current.value;
+
+      if (!password.match(/\d/g) || !password.match(/[a-zA-Z]/g)) {
+        toast.error(PASSWORD_VALID_ERROR);
+      } else {
+        loginAction({
+          login: loginRef.current.value,
+          password: passwordRef.current.value
+        });
+      }
     }
   };
 
@@ -38,7 +46,7 @@ function LoginScreen (): JSX.Element {
       <div className="page__login-container container">
         <section className="login">
           <h1 className="login__title">Sign in</h1>
-          <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
+          <form className="login__form form" action="#" method="post" onSubmit={handleFormSubmit}>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
               <input

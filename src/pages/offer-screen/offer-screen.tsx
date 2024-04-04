@@ -2,11 +2,11 @@ import {useParams} from 'react-router-dom';
 
 import {CITIES, MaxCountLimit, RequestStatus,} from '../../const.ts';
 
-import {getActiveCityParams, upperString} from '../../utils/utils.ts';
+import {getActiveCityParams, getPlural, getUpperString} from '../../utils/utils.ts';
 import Page404Screen from '../page404-screen';
 import MemorizedReviews from '../../components/reviews';
 import MemorizedOffersList from '../../components/offers-list';
-import {Ratings} from '../../types/rating.ts';
+
 import Map from '../../components/map';
 
 import {useActionCreators, useAppSelector} from '../../hooks';
@@ -21,11 +21,7 @@ import {MemorizedOfferGalleries, MemorizedGoodsList} from './utils.tsx';
 import {CityName} from '../../types/cities.ts';
 import classNames from 'classnames';
 
-type OfferScreenProps = {
-  ratingsList: Ratings;
-};
-
-function OfferScreen({ratingsList}: OfferScreenProps): JSX.Element {
+function OfferScreen(): JSX.Element {
 
   const {fetchOfferAction, fetchNearByAction} = useActionCreators(offerActions);
   const {fetchCommentsAction} = useActionCreators(reviewsActions);
@@ -57,7 +53,7 @@ function OfferScreen({ratingsList}: OfferScreenProps): JSX.Element {
   const activeCityParams = getActiveCityParams(CITIES, activeCity as CityName);
 
   const ratingStarsStyle = Math.round(currentOffer.rating) * 20;
-  const upperType = upperString(currentOffer.type);
+  const upperType = getUpperString(currentOffer.type);
 
   const nearByOffersList = nearByOffers.slice(0, MaxCountLimit.OfferNearby);
   const nearByOffersMap = activeOffer !== undefined ? [...nearByOffersList, activeOffer] : nearByOffersList;
@@ -97,14 +93,14 @@ function OfferScreen({ratingsList}: OfferScreenProps): JSX.Element {
               {
                 currentOffer.bedrooms !== undefined ?
                   <li className="offer__feature offer__feature--bedrooms">
-                    {currentOffer.bedrooms} Bedrooms
+                    {currentOffer.bedrooms} {getPlural(currentOffer.bedrooms, ['Bedroom', 'Bedrooms', 'Bedrooms'])}
                   </li>
                   : null
               }
               {
                 currentOffer.maxAdults !== undefined ?
                   <li className="offer__feature offer__feature--adults">
-                    Max {currentOffer.maxAdults} adults
+                    Max {currentOffer.maxAdults} {getPlural(currentOffer.maxAdults, ['adult', 'adults', 'adults'])}
                   </li>
                   : null
               }
@@ -130,7 +126,7 @@ function OfferScreen({ratingsList}: OfferScreenProps): JSX.Element {
               <div className="offer__description">{currentOffer.description}</div>
             </div>
             <section className="offer__reviews reviews">
-              <MemorizedReviews reviewsListData={reviews} isAuth={isAuth} ratingsList={ratingsList} />
+              <MemorizedReviews reviewsListData={reviews} isAuth={isAuth} />
             </section>
           </div>
         </div>

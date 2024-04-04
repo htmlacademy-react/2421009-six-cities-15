@@ -28,7 +28,6 @@ type MapProps = {
 function Map ({offers, className, selectedPoint, selectedCity}: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
-  //const city: OfferCity = offers[0]['city'];
   const map = useMap(mapRef, selectedCity);
   const markerLayer = useRef<LayerGroup>(leaflet.layerGroup());
 
@@ -39,7 +38,6 @@ function Map ({offers, className, selectedPoint, selectedCity}: MapProps): JSX.E
       markerLayer.current.clearLayers();
       markerLayer.current.addTo(map);
 
-      //const markerLayer = leaflet.layerGroup().addTo(map);
       offers.forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,

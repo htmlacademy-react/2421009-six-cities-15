@@ -7,8 +7,6 @@ import {AppRoute, CITIES, DEFAULT_CITY} from '../../const';
 import {useActionCreators} from '../../hooks';
 import {getToken} from '../../services/token.ts';
 
-import {Ratings} from '../../types/rating.ts';
-
 import Layout from '../../components/layout';
 
 import MainScreen from '../../pages/main-screen';
@@ -21,11 +19,7 @@ import ProtectedRoute from '../protected-route';
 import {offersActions} from '../../store/slices/offers.ts';
 import {userActions} from '../../store/slices/user.ts';
 
-type AppProps = {
-  ratingsList: Ratings;
-}
-
-function App({ratingsList}: AppProps): JSX.Element {
+function App(): JSX.Element {
 
   const {fetchOffersAction} = useActionCreators(offersActions);
   const {checkAuthAction} = useActionCreators(userActions);
@@ -82,9 +76,7 @@ function App({ratingsList}: AppProps): JSX.Element {
             }
             />
             <Route path={AppRoute.Offer} element={
-              <OfferScreen
-                ratingsList={ratingsList}
-              />
+              <OfferScreen />
             }
             />
             <Route path="*" element={<Page404Screen />} />

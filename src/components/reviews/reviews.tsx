@@ -1,5 +1,4 @@
 import {ReviewsType} from '../../types/reviews.ts';
-import {Ratings} from '../../types/rating.ts';
 
 import MemorizedReviewsForm from '../reviews-form';
 import MemorizedReviewsList from '../reviews-list';
@@ -8,10 +7,9 @@ import {memo} from 'react';
 type ReviewsProps = {
   isAuth: boolean;
   reviewsListData: ReviewsType;
-  ratingsList: Ratings;
 }
 
-function Reviews ({isAuth, reviewsListData, ratingsList}: ReviewsProps):JSX.Element {
+function Reviews ({isAuth, reviewsListData}: ReviewsProps):JSX.Element {
 
   const reviewsAmount = reviewsListData.length;
 
@@ -23,7 +21,7 @@ function Reviews ({isAuth, reviewsListData, ratingsList}: ReviewsProps):JSX.Elem
           <MemorizedReviewsList reviews={reviewsListData}/>
         </>}
 
-      {isAuth && <MemorizedReviewsForm ratingsList={ratingsList}/>}
+      {isAuth && <MemorizedReviewsForm />}
     </>
   );
 }

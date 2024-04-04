@@ -1,5 +1,5 @@
 import {Review} from '../../types/reviews.ts';
-import {upperString} from '../../utils/utils.ts';
+import {getUpperString} from '../../utils/utils.ts';
 import {memo} from 'react';
 
 type ReviewProps = {
@@ -8,7 +8,7 @@ type ReviewProps = {
 
 const formatDate = (date: string): string => {
   const dateObj = new Date(date);
-  return `${upperString(dateObj.toLocaleString('default', { month: 'long' }))} ${dateObj.getFullYear()}`;
+  return `${getUpperString(dateObj.toLocaleString('en-US', { month: 'long' }))} ${dateObj.getFullYear()}`;
 };
 
 function ReviewList ({review}: ReviewProps):JSX.Element {

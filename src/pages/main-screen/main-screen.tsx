@@ -3,7 +3,7 @@ import {useMemo, useState} from 'react';
 import {Offers} from '../../types/offers.ts';
 import {CityName} from '../../types/cities.ts';
 
-import {getActiveCityParams, plural} from '../../utils/utils.ts';
+import {getActiveCityParams, getPlural} from '../../utils/utils.ts';
 
 import {useAppSelector} from '../../hooks';
 
@@ -63,7 +63,7 @@ function MainScreen ({city}: MainScreenProps): JSX.Element {
               <>
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{cityOffersCount} {plural(cityOffersCount, ['place', 'places', 'places'])} to stay in {city}</b>
+                  <b className="places__found">{cityOffersCount} {getPlural(cityOffersCount, ['place', 'places', 'places'])} to stay in {city}</b>
                   <MemorizedSortingForm current={activeSort} setter={setActiveSort} />
                   <div className="cities__places-list places__list tabs__content">
                     <MemorizedOffersList

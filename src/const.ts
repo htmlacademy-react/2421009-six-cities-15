@@ -90,6 +90,25 @@ export const CITIES = [
 
 export const DEFAULT_CITY: City = CITIES[0];
 
+export const RATINGS = [
+  {
+    'title': 'perfect',
+    'value' : 5,
+  },{
+    'title': 'good',
+    'value' : 4,
+  },{
+    'title': 'not bad',
+    'value' : 3,
+  },{
+    'title': 'badly',
+    'value' : 2,
+  },{
+    'title': 'terribly',
+    'value' : 1,
+  },
+] as const;
+
 export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'] satisfies Record<SortOption, string>;
 export const enum SortOption {
   Popular,
@@ -123,6 +142,14 @@ export enum MaxCountLimit {
   Comments = 10,
   OfferNearby = 3,
 }
+
+export const ReviewsParams = {
+  MinReviewLength: 50,
+  MaxReviewLength: 300,
+  NoticeOfBadSending: 'No comment was posted. Please try sending later or contact your administrator.'
+} as const;
+
+export const PASSWORD_VALID_ERROR = 'Password must contain at least one letter and one number';
 
 export const OFFER_TYPE = ['Apartment', 'Room', 'House', 'Hotel'] as const;
 

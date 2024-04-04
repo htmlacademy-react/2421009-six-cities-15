@@ -7,7 +7,7 @@ type CardParamsType = {
   };
 }
 
-export const cardParams = (template:string): CardParamsType => {
+export const getCardParams = (template:string): CardParamsType => {
 
   let classNames = {'article' : '', 'image' : ''};
   let width = '260';

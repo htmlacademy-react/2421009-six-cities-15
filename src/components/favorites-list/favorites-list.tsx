@@ -1,30 +1,16 @@
-
 import {Offers} from '../../types/offers.ts';
 import {Fragment, memo} from 'react';
 import {NavLink} from 'react-router-dom';
 import MemorizedOffersList from '../offers-list';
-import {CITIES} from '../../const.ts';
+import {getCityId} from './utils.ts';
 
 type FavoritesListProps = {
   offers : Offers;
 }
 
-const getCityId = (cityName: string): string => {
-  let id = '';
-  for (const city of CITIES) {
-    if (city['name'] === cityName) {
-      id = city.id;
-      break;
-    }
-  }
-
-  return id;
-};
-
 function FavoritesList ({offers}: FavoritesListProps): JSX.Element {
 
   const offersByCity = Object.groupBy(offers, (offer) => offer.city.name);
-
   const cities = Object.keys(offersByCity);
 
   return (

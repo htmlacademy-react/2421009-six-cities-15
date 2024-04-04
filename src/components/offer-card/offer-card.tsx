@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 import {useActionCreators} from '../../hooks';
 import {OfferList, OffersListTemplate} from '../../types/offers.ts';
 import {offersActions} from '../../store/slices/offers.ts';
-import {cardParams, handleMouseEnter, handleMouseOut} from './utils.ts';
-import {upperString} from '../../utils/utils.ts';
+import {getCardParams, handleMouseEnter, handleMouseOut} from './utils.ts';
+import {getUpperString} from '../../utils/utils.ts';
 import MemorizedFavoriteButton from '../favorite-button';
 
 type OfferProps = {
@@ -22,9 +22,9 @@ function OfferCard({offerParams, offersListTemplate, hovered}: OfferProps): JSX.
   const ratingWidth : number = 20 * Math.round(rating);
   const linkDetail : string = `/offer/${id}`;
 
-  const upperType = upperString(type);
+  const upperType = getUpperString(type);
 
-  const {classNames, width, height} = cardParams(offersListTemplate);
+  const {classNames, width, height} = getCardParams(offersListTemplate);
 
   const memorizedHandleMouseEnter = useCallback(() => handleMouseEnter(hovered, id, setActiveId), [hovered, id, setActiveId]);
   const memorizedHandleMouseOut = useCallback(() => handleMouseOut(hovered, setActiveId), [hovered, setActiveId]);
