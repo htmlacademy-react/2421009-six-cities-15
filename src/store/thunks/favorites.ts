@@ -7,10 +7,7 @@ type ChangeFavoriteProps = {
   status: FavoritesStatus;
 }
 
-type ChangeFavoriteResponce = {
-  offer: OfferDetail;
-  status: FavoritesStatus;
-}
+type ChangeFavoriteResponce = OfferDetail;
 
 export const fetchFavoritesAction = createAppAsyncThunk<Offers, undefined>(
   'data/fetchFavorites',
@@ -24,6 +21,6 @@ export const changeFavoriteAction = createAppAsyncThunk<ChangeFavoriteResponce, 
   'data/changeFavorite',
   async ({offerId, status}, {extra: api}) => {
     const response = await api.post<OfferDetail>(`${APIRoute.Favorite}/${offerId}/${status}`);
-    return {offer: response.data, status};
+    return response.data;
   },
 );

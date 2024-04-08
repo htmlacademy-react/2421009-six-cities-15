@@ -5,7 +5,7 @@ import MemorizedCityList from '../city-list';
 
 function CitiesList (): JSX.Element {
   return (
-    <ul className="locations__list tabs__list">
+    <ul className="locations__list tabs__list" data-testid="locations__list">
       {CITIES.map((city:City) => (
         <MemorizedCityList city={city} key={city.id} />
       ))}

@@ -1,6 +1,6 @@
 import {NavLink} from 'react-router-dom';
 import {City} from '../../types/cities.ts';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import {memo} from 'react';
 
 type CityProps = {

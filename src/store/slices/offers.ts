@@ -46,17 +46,7 @@ const offersSlice = createSlice({
 
 const offersActions = {...offersSlice.actions, fetchOffersAction};
 const offersSelectors = {
-  ...offersSlice.selectors,
-  // cityOffers: createSelector(offersSlice.selectors.offers, offersSlice.selectors.city, (allOffers, city) =>
-  //   allOffers.filter((offer) => offer.city.name === city),
-  // ),
-  // activeOffer: createSelector(offersSlice.selectors.offers, offersSlice.selectors.activeId, (allOffers, id) =>
-  //   allOffers.filter((offer) => {
-  //     if (offer.id === id) {
-  //       return offer;
-  //     }
-  //   }),
-  // ),
+  ...offersSlice.selectors
 };
 
 export {offersActions, offersSelectors, offersSlice};

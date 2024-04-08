@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/';
 
 import {Provider} from 'react-redux';
-import './polyfills';
 import {store} from './store';
 
 import {ToastContainer} from 'react-toastify';

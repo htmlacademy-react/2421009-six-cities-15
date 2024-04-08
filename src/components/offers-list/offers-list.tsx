@@ -6,7 +6,8 @@ import MemorizedOfferCard from '../offer-card';
 type OffersParams = {
   offersList: Offers;
   offersListTemplate: OffersListTemplate;
-} & {hovered?: boolean};
+  hovered?: boolean;
+};
 
 function OffersList ({offersList, offersListTemplate, hovered}: OffersParams): JSX.Element {
   return (

@@ -30,13 +30,14 @@ const favoritesSlice = createSlice({
         state.status = RequestStatus.Failed;
       })
       .addCase(changeFavoriteAction.fulfilled, (state, action) => {
-        switch (action.payload.status) {
-          case FavoritesStatus.Added:
-            state.items.push(action.payload.offer);
+        switch (action.payload.isFavorite) {
+          case !!FavoritesStatus.Added:
+            state.items.push(action.payload);
             break;
-          case FavoritesStatus.Removed:
-            state.items = state.items.filter(({id}) => id !== action.payload.offer.id);
+          case !!FavoritesStatus.Removed:
+            state.items = state.items.filter(({id}) => id !== action.payload.id);
         }
+        state.status = RequestStatus.Success;
       })
       .addCase(changeFavoriteAction.pending, (state) => {
         state.status = RequestStatus.Loading;

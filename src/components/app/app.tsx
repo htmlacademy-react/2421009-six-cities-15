@@ -28,8 +28,6 @@ function App(): JSX.Element {
   useEffect(() => {
     fetchOffersAction()
       .unwrap()
-      .then (() => {
-      })
       .catch();
   });
 

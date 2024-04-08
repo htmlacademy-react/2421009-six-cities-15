@@ -7,6 +7,13 @@ import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import {Nullable} from 'vitest';
 import {City} from '../../types/cities.ts';
 
+type MapProps = {
+  offers: Offers;
+  className: string;
+  selectedPoint: Nullable<OfferList>;
+  selectedCity: City;
+};
+
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [27, 39],
@@ -19,12 +26,6 @@ const currentCustomIcon = new Icon({
   iconAnchor: [27, 39]
 });
 
-type MapProps = {
-  offers: Offers;
-  className: string;
-  selectedPoint: Nullable<OfferList>;
-  selectedCity: City;
-};
 function Map ({offers, className, selectedPoint, selectedCity}: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
@@ -54,7 +55,7 @@ function Map ({offers, className, selectedPoint, selectedCity}: MapProps): JSX.E
       });
 
       return () => {
-        // map.removeLayer(markerLayer.current);
+
       };
     }
   }, [map, offers, selectedCity, selectedPoint]);

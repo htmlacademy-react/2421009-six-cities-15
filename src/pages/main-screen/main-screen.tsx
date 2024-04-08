@@ -29,10 +29,10 @@ function MainScreen ({city}: MainScreenProps): JSX.Element {
   const activeCityParams = getActiveCityParams(CITIES, city);
   const offers:Offers = useAppSelector(offersSelectors.offers);
 
-  const currentOffersByCity:Offers = useMemo(() => {
-    const offersByCity = Object.groupBy(offers, (offer) => offer.city.name);
-    return offersByCity[city] || [];
-  }, [offers, city]);
+  const currentOffersByCity: Offers = useMemo(
+    () => offers.filter((offer) => offer.city.name === city),
+    [offers, city]
+  );
 
   const activeId = useAppSelector(offersSelectors.activeId);
   const activeOffer = (offers.filter((offer) => offer.id === activeId)).shift();

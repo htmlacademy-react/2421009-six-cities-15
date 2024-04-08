@@ -155,3 +155,4 @@ export const OFFER_TYPE = ['Apartment', 'Room', 'House', 'Hotel'] as const;
 
 export type OfferType = (typeof OFFER_TYPE)[number];
 
+export const RATING_MULTIPLIER = 20;

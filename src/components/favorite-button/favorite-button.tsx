@@ -10,14 +10,20 @@ type FavoriteButtonProps = {
   bemBlock?: 'offer' | 'place-card';
   isFavorite?: boolean;
   offerId: string;
-  width: number;
 }
 
-const enum Default {
-  HeightCoefficient = 18 / 17
-}
+function FavoriteButton ({bemBlock = 'place-card', isFavorite = false, offerId}: FavoriteButtonProps): JSX.Element {
 
-function FavoriteButton ({bemBlock = 'place-card', isFavorite = false, offerId, width = 18}: FavoriteButtonProps): JSX.Element {
+  const buttonSize = {
+    'place-card' : {
+      width: 18,
+      height: 19,
+    },
+    'offer' : {
+      width: 31,
+      height: 33,
+    },
+  };
 
   const [favorite, setFavorite] = useState(isFavorite);
   const navigate = useNavigate();
@@ -30,11 +36,10 @@ function FavoriteButton ({bemBlock = 'place-card', isFavorite = false, offerId, 
     'button'
   );
 
-  const height = width * Default.HeightCoefficient;
   const {changeFavoriteAction} = useActionCreators(favoritesActions);
   const isAuth = useAuth();
 
-  const handleClick = () => {
+  const handleButtonClick = () => {
     if (isAuth) {
       changeFavoriteAction({
         offerId,
@@ -47,8 +52,8 @@ function FavoriteButton ({bemBlock = 'place-card', isFavorite = false, offerId, 
   };
 
   return (
-    <button className={favoriteClass} onClick={handleClick} type="button">
-      <svg className={`${bemBlock}__bookmark-icon`} width={width} height={height}>
+    <button className={favoriteClass} onClick={handleButtonClick} type="button">
+      <svg className={`${bemBlock}__bookmark-icon`} width={buttonSize[bemBlock].width} height={buttonSize[bemBlock].height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">{favoriteLabel}</span>

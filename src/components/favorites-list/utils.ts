@@ -1,13 +1,3 @@
-import {CITIES} from '../../const.ts';
+import {CITIES, DEFAULT_CITY} from '../../const.ts';
 
-export const getCityId = (cityName: string): string => {
-  let id = '';
-  for (const city of CITIES) {
-    if (city['name'] === cityName) {
-      id = city.id;
-      break;
-    }
-  }
-
-  return id;
-};
+export const getCityId = (cityName: string): string => CITIES.find((city) => city.name === cityName)?.id ?? DEFAULT_CITY.id;

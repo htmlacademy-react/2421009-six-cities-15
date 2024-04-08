@@ -8,20 +8,21 @@ type ReviewsProps = {
   reviews: ReviewsType;
 }
 
-function ReviewsList ({reviews}: ReviewsProps): JSX.Element | null {
+function ReviewsList ({reviews}: ReviewsProps) {
 
   const reviewsLimit = reviews !== undefined ? reviews.slice(0, MaxCountLimit.Comments) : [];
   const reviewsCount = reviewsLimit.length;
 
   return (
-    reviewsCount > 0 ?
-      <ul className="reviews__list">
+    reviewsCount > 0 && (
+      <ul className="reviews__list" data-testid="reviews__list">
         {
           reviewsLimit.map((review: Review) => (
             <MemorizedReviewList key={review.id} review={review} />
           ))
         }
-      </ul> : null
+      </ul>
+    )
   );
 }
 

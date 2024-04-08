@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {AuthorizationStatus, RequestStatus, StoreSlices} from '../../const.ts';
 import {User} from '../../types/user.ts';
@@ -46,13 +46,7 @@ const userSlice = createSlice({
       .addCase(loginAction.fulfilled, proccessSuccess)
       .addCase(loginAction.rejected, proccessFailed)
       .addCase(logoutAction.fulfilled, (state) => {
-        state.user = {
-          'name' : '',
-          'email' : '',
-          'avatarUrl' : '',
-          'isPro' : false,
-          'token' : '',
-        };
+        state.user = initialState.user;
         state.status = AuthorizationStatus.NoAuth;
       });
   },
@@ -71,6 +65,7 @@ const userActions = {...userSlice.actions, checkAuthAction, loginAction, logoutA
 
 const userSelectors = {
   ...userSlice.selectors,
+  isAuth: createSelector(userSlice.selectors.status, (status) => status === AuthorizationStatus.Auth)
 };
 
 export {userActions, userSlice, userSelectors};
