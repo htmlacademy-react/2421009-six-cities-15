@@ -81,6 +81,8 @@ export const makeFakeLoginData = (): Auth => ({
   'password' : internet.password(),
 });
 
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
+
 export const makeFakeStore = (initialState?: Partial<State>): State => ({
   [StoreSlices.Offers]: { offers:[], status: RequestStatus.Idle, activeId: '' },
   [StoreSlices.Offer]: {offer:makeFakeOffer(FavoritesStatus.Removed), status: RequestStatus.Idle, nearby:[]},

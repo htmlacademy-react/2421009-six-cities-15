@@ -1,5 +1,4 @@
-import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
-import {HelmetProvider} from 'react-helmet-async';
+import {Navigate, Route, Routes} from 'react-router-dom';
 
 import {useEffect} from 'react';
 
@@ -18,6 +17,7 @@ import ProtectedRoute from '../protected-route';
 
 import {offersActions} from '../../store/slices/offers.ts';
 import {userActions} from '../../store/slices/user.ts';
+import {HelmetProvider} from 'react-helmet-async';
 
 function App(): JSX.Element {
 
@@ -39,48 +39,46 @@ function App(): JSX.Element {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path={AppRoute.Root} element={<Layout />}>
+      <Routes>
+        <Route path={AppRoute.Root} element={<Layout/>}>
 
-            <Route path={AppRoute.Root} index element={
-              <Navigate to={`/${DEFAULT_CITY.id}`} />
-            }
-            />
+          <Route path={AppRoute.Root} index element={
+            <Navigate to={`/${DEFAULT_CITY.id}`}/>
+          }
+          />
 
-            {CITIES.map((city) => (
-              <Route
-                index
-                key={city.id}
-                path={`/${city.id}`}
-                element={
-                  <MainScreen
-                    city={city.name}
-                  />
-                }
-              />
-            ))}
+          {CITIES.map((city) => (
+            <Route
+              index
+              key={city.id}
+              path={`/${city.id}`}
+              element={
+                <MainScreen
+                  city={city.name}
+                />
+              }
+            />
+          ))}
 
-            <Route path={AppRoute.Login} element={(
-              <ProtectedRoute onlyUnAuth>
-                <LoginScreen />
-              </ProtectedRoute>
-            )}
-            />
-            <Route path={AppRoute.Favorites} element={
-              <ProtectedRoute>
-                <FavoritesScreen />
-              </ProtectedRoute>
-            }
-            />
-            <Route path={AppRoute.Offer} element={
-              <OfferScreen />
-            }
-            />
-            <Route path="*" element={<Page404Screen />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          <Route path={AppRoute.Login} element={(
+            <ProtectedRoute onlyUnAuth>
+              <LoginScreen/>
+            </ProtectedRoute>
+          )}
+          />
+          <Route path={AppRoute.Favorites} element={
+            <ProtectedRoute>
+              <FavoritesScreen/>
+            </ProtectedRoute>
+          }
+          />
+          <Route path={AppRoute.Offer} element={
+            <OfferScreen/>
+          }
+          />
+          <Route path="*" element={<Page404Screen/>}/>
+        </Route>
+      </Routes>
     </HelmetProvider>
   );
 }
