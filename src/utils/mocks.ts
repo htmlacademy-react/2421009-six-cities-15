@@ -3,14 +3,12 @@ import {address, datatype, internet, lorem, name, random} from 'faker';
 import { Action } from 'redux';
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import { createAPI } from '../services/api';
-// import { State } from '../types/state';
 import {OfferDetail} from '../types/offers.ts';
 import {AuthorizationStatus, FavoritesStatus, RequestStatus, StoreSlices} from '../const.ts';
 import {Review} from '../types/reviews.ts';
 import {User} from '../types/user.ts';
 import {Auth} from '../types/auth.ts';
 import {State} from '../types/state';
-
 
 export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
 

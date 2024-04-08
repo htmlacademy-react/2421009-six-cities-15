@@ -2,7 +2,7 @@ import {Helmet} from 'react-helmet-async';
 
 import {NavLink} from 'react-router-dom';
 
-import {CITIES, PASSWORD_VALID_ERROR} from '../../const.ts';
+import {CITIES, LoginRegulars, PASSWORD_VALID_ERROR} from '../../const.ts';
 import {FormEvent, useRef} from 'react';
 import {useActionCreators} from '../../hooks';
 import {userActions} from '../../store/slices/user.ts';
@@ -22,7 +22,7 @@ function LoginScreen (): JSX.Element {
 
       const password = passwordRef.current.value;
 
-      if (!password.match(/\d/g) || !password.match(/[a-zA-Z]/g)) {
+      if (!password.match(LoginRegulars.OnlyDigits) || !password.match(LoginRegulars.OnlyLetters)) {
         toast.error(PASSWORD_VALID_ERROR);
       } else {
         loginAction({

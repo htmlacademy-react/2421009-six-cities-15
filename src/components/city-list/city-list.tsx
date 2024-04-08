@@ -8,7 +8,7 @@ type CityProps = {
 }
 function CityList ({city}: CityProps): JSX.Element {
   return (
-    <li className="locations__item">
+    <li className="locations__item" data-testid="locations__item">
       <NavLink to={`/${city.id}`} className={({isActive}) => classNames(
         'locations__item-link', 'tabs__item', {'tabs__item--active': isActive}
       )}

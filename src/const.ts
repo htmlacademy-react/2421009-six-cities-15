@@ -1,5 +1,3 @@
-//import {Cities} from './types/cities.ts';
-
 export const BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
 
@@ -151,8 +149,9 @@ export const ReviewsParams = {
 
 export const PASSWORD_VALID_ERROR = 'Password must contain at least one letter and one number';
 
-export const OFFER_TYPE = ['Apartment', 'Room', 'House', 'Hotel'] as const;
-
-export type OfferType = (typeof OFFER_TYPE)[number];
-
 export const RATING_MULTIPLIER = 20;
+
+export const LoginRegulars = {
+  OnlyDigits: /\d/g,
+  OnlyLetters: /[a-zA-Z]/g,
+} as const;

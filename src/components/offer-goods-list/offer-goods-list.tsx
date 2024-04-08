@@ -3,7 +3,7 @@ import {memo} from 'react';
 type OfferGoodsType = {
   goods: string[];
 }
-function OfferGoodsListItem ({goods}:OfferGoodsType) {
+function OfferGoodsList ({goods}:OfferGoodsType) {
   return (
     goods !== undefined && goods.length > 0 && (
       <div className="offer__inside" data-testid="offer__inside">
@@ -20,5 +20,5 @@ function OfferGoodsListItem ({goods}:OfferGoodsType) {
   );
 }
 
-const MemorizedOfferGoodsList = memo(OfferGoodsListItem);
+const MemorizedOfferGoodsList = memo(OfferGoodsList);
 export default MemorizedOfferGoodsList;
